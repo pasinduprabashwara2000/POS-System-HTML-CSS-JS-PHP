@@ -22,6 +22,7 @@ include "db/DBConnection.php";
     <ol class="navigation-menu">
         <li><a href="#" data-page="customers">Manage Customers</a></li>
         <li><a href="#" data-page="items">Manage Items</a></li>
+        <li><a href="#" data-page="suppliers">Manage Suppliers</a></li>
         <li><a href="#" data-page="orders">Order Management</a></li>
     </ol>
 
@@ -41,9 +42,9 @@ include "db/DBConnection.php";
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-<script src="assets/js/app.js"></script>
-<script src="assets/js/customer.js"></script>
-<script src="assets/js/item.js"></script>
+<script src="assets/js/app.js?v=<?= filemtime('assets/js/app.js') ?>"></script>
+<script src="assets/js/customer.js?v=<?= filemtime('assets/js/customer.js') ?>"></script>
+<script src="assets/js/item.js?v=<?= filemtime('assets/js/item.js') ?>"></script>
 
 <script>
     // ================= LOGOUT =================

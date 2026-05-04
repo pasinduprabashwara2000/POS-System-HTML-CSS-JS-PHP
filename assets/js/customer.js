@@ -1,31 +1,5 @@
-// LOAD ALL CUSTOMERS
-function loadCustomers() {
-    $.ajax({
-        url: "controller/CustomerController.php",
-        type: "POST",
-        dataType: "json",
-        data: { action: "getAll" },
-        success: function(data) {
-            let rows = "";
-            data.forEach(c => {
-                rows += `
-                    <tr class="customer-row" style="cursor:pointer;">
-                        <td>${c.id}</td>
-                        <td>${c.full_name}</td>
-                        <td>${c.address}</td>
-                        <td>${c.contact_no}</td>
-                    </tr>`;
-            });
-            $("#customers_tbody").html(rows);
-        },
-        error: function() {
-            Swal.fire("Error", "Failed to load customers", "error");
-        }
-    });
-}
-
 // SAVE CUSTOMER
-$(document).on("submit", "#customerForm", function(e) {
+$(document).on("submit", "#customer_save_btn", function(e) {
     e.preventDefault();
     $.ajax({
         url: "controller/CustomerController.php",
@@ -47,17 +21,8 @@ $(document).on("submit", "#customerForm", function(e) {
     });
 });
 
-// TABLE ROW CLICK — populate form
-$(document).on("click", ".customer-row", function() {
-    let row = $(this).children("td");
-    $("#id").val(row.eq(0).text());
-    $("#full_name").val(row.eq(1).text());
-    $("#address").val(row.eq(2).text());
-    $("#contact_no").val(row.eq(3).text());
-});
-
 // UPDATE CUSTOMER
-$(document).on("click", "#customerForm .btn-success", function() {
+$(document).on("click", "#customer_update_btn", function() {
     let id = $("#id").val();
     if (!id) {
         Swal.fire("Warning", "Please select a customer first", "warning");
@@ -90,7 +55,7 @@ $(document).on("click", "#customerForm .btn-success", function() {
 });
 
 // DELETE CUSTOMER
-$(document).on("click", "#customerForm .btn-danger", function() {
+$(document).on("click", "#customer_delete_btn", function() {
     let id = $("#id").val();
     if (!id) {
         Swal.fire("Warning", "Please select a customer first", "warning");
@@ -108,7 +73,10 @@ $(document).on("click", "#customerForm .btn-danger", function() {
                 url: "controller/CustomerController.php",
                 type: "POST",
                 dataType: "json",
-                data: { action: "delete", id: id },
+                data: {
+                    action: "delete",
+                    id: id
+                },
                 success: function(res) {
                     if (res.status) {
                         Swal.fire("Deleted", "Customer Deleted", "success");
@@ -125,6 +93,41 @@ $(document).on("click", "#customerForm .btn-danger", function() {
         }
     });
 });
+
+// TABLE ROW CLICK — populate form
+$(document).on("click", ".customer-row", function() {
+    let row = $(this).children("td");
+    $("#id").val(row.eq(0).text());
+    $("#full_name").val(row.eq(1).text());
+    $("#address").val(row.eq(2).text());
+    $("#contact_no").val(row.eq(3).text());
+});
+
+// LOAD ALL CUSTOMERS
+function loadCustomers() {
+    $.ajax({
+        url: "controller/CustomerController.php",
+        type: "POST",
+        dataType: "json",
+        data: { action: "getAll" },
+        success: function(data) {
+            let rows = "";
+            data.forEach(c => {
+                rows += `
+                    <tr class="customer-row" style="cursor:pointer;">
+                        <td>${c.id}</td>
+                        <td>${c.full_name}</td>
+                        <td>${c.address}</td>
+                        <td>${c.contact_no}</td>
+                    </tr>`;
+            });
+            $("#customers_tbody").html(rows);
+        },
+        error: function() {
+            Swal.fire("Error", "Failed to load customers", "error");
+        }
+    });
+}
 
 // RESET CUSTOMER FORM
 $(document).on("click", "#customer_reset_btn", function() {

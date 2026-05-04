@@ -22,9 +22,7 @@
             </div>
         </div>
         <div class="btn-section">
-            <button type="submit" id="item_save_btn" class="btn btn-primary">Save</button>
-            <button type="button" id="item_update_btn" class="btn btn-success">Update</button>
-            <button type="button" id="item_delete_btn" class="btn btn-danger">Delete</button>
+            <button type="submit" class="btn btn-primary">Save</button>
             <button type="button" id="item_reset_btn" class="btn btn-secondary">Reset</button>
         </div>
     </form>
@@ -32,12 +30,12 @@
 <div class="container-bottom">
     <table class="table table-striped table-hover">
         <thead>
-            <tr>
-                <th>Code</th>
-                <th>Name</th>
-                <th>Price</th>
-                <th>Qty</th>
-            </tr>
+        <tr>
+            <th>Code</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Qty</th>
+        </tr>
         </thead>
         <tbody id="item_tbody"></tbody>
     </table>

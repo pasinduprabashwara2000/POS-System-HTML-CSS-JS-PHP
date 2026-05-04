@@ -19,12 +19,6 @@ if ($action === "add") {
     echo json_encode(["status" => $result]);
 }
 
-// ---------------------- READ ALL ---------------------- //
-if ($action === "getAll") {
-    $data = getAllItems($conn);
-    echo json_encode($data);
-}
-
 // ---------------------- UPDATE ---------------------- //
 if ($action === "update") {
     $result = updateItem(
@@ -42,4 +36,11 @@ if ($action === "delete") {
     $result = deleteItem($_POST['item_code'], $conn);
     echo json_encode(["status" => $result]);
 }
+
+// ---------------------- READ ALL ---------------------- //
+if ($action === "getAll") {
+    $data = getAllItems($conn);
+    echo json_encode($data);
+}
+
 ?>

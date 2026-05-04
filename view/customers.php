@@ -22,9 +22,9 @@
             </div>
         </div>
         <div class="btn-section">
-            <button type="submit" class="btn btn-primary">Save</button>
-            <button type="button" class="btn btn-success">Update</button>
-            <button type="button" class="btn btn-danger">Delete</button>
+            <button type="submit" id="customer_save_btn" class="btn btn-primary">Save</button>
+            <button type="button" id="customer_update_btn" class="btn btn-success">Update</button>
+            <button type="button" id="customer_delete_btn" class="btn btn-danger">Delete</button>
             <button type="button" id="customer_reset_btn" class="btn btn-secondary">Reset</button>
         </div>
     </form>
