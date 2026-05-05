@@ -1,29 +1,31 @@
 <div class="container-top">
-    <h3>Manage Items</h3>
-    <form id="itemForm">
+    <h3>Manage Suppliers</h3>
+    <form id="supplierForm">
         <div class="row mb-3">
             <div class="col-md-4">
-                <label>Item Code</label>
-                <input type="text" id="item_code" name="item_code" class="form-control">
+                <label>Supplier ID : </label>
+                <input type="text" id="sup_id" name="sup_id" class="form-control">
             </div>
             <div class="col-md-4">
-                <label>Item Name</label>
-                <input type="text" id="item_name" name="item_name" class="form-control">
+                <label>Supplier Name : </label>
+                <input type="text" id="supplier_name" name="supplier_name" class="form-control">
             </div>
             <div class="col-md-4">
-                <label>Unit Price</label>
-                <input type="text" id="unit_price" name="unit_price" class="form-control">
+                <label>Email : </label>
+                <input type="text" id="email" name="email" class="form-control">
             </div>
         </div>
         <div class="row mb-3">
             <div class="col-md-4">
-                <label>Qty</label>
-                <input type="text" id="qty" name="qty" class="form-control">
+                <label>Contact No : </label>
+                <input type="text" id="contact_no" name="contact_no" class="form-control">
             </div>
         </div>
         <div class="btn-section">
-            <button type="submit" class="btn btn-primary">Save</button>
-            <button type="button" id="item_reset_btn" class="btn btn-secondary">Reset</button>
+            <button type="button" id="supplier_save_btn"class="btn btn-primary">Save</button>
+            <button type="button" id="supplier_update_btn" class="btn btn-success">Update</button>
+            <button type="button" id="supplier_delete_btn" class="btn btn-danger">Delete</button>
+            <button type="button" id="supplier_reset_btn" class="btn btn-secondary">Reset</button>
         </div>
     </form>
 </div>
@@ -31,12 +33,12 @@
     <table class="table table-striped table-hover">
         <thead>
         <tr>
-            <th>Code</th>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Qty</th>
+            <th>Supplier ID</th>
+            <th>Supplier Name</th>
+            <th>Email</th>
+            <th>Contact No</th>
         </tr>
         </thead>
-        <tbody id="item_tbody"></tbody>
+        <tbody id="supplier_tbody"></tbody>
     </table>
 </div>

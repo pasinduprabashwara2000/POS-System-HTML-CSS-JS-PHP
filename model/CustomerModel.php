@@ -1,6 +1,6 @@
 <?php
 
-//-------------------CREATE-----------------------//
+//-----------------------CREATE-----------------------//
 function saveCustomer($id, $full_name, $address, $contact_no, $conn){
     $stmt = $conn->prepare("
         INSERT INTO customers (id, full_name, address, contact_no)
@@ -10,7 +10,7 @@ function saveCustomer($id, $full_name, $address, $contact_no, $conn){
     return $stmt->execute();
 }
 
-//--------------------Update----------------------//
+//-----------------------UPDATE----------------------//
 function updateCustomer($id, $full_name, $address, $contact_no, $conn){
     $stmt = $conn->prepare("
         UPDATE customers SET full_name = ?, address = ?, contact_no = ? WHERE id = ?
@@ -19,14 +19,14 @@ function updateCustomer($id, $full_name, $address, $contact_no, $conn){
     return $stmt->execute();
 }
 
-//---------------------Delete--------------------//
+//---------------------DELETE--------------------//
 function deleteCustomer($id,$conn){
     $stmt = $conn->prepare("DELETE FROM customers WHERE id = ?");
     $stmt->bind_param("i",$id);
     return $stmt->execute();
 }
 
-//--------------------Read All------------------//
+//--------------------READ ALL------------------//
 function getAllCustomers($conn) {
     $sql = "SELECT * FROM customers";
     $result = $conn->query($sql);

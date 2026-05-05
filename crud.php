@@ -1,4 +1,11 @@
 <?php
+session_start();
+
+if (!isset($_SESSION['user_id'])) {
+    header("Location: index.php");
+    exit;
+}
+
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 include "db/DBConnection.php";
@@ -10,6 +17,7 @@ include "db/DBConnection.php";
     <meta charset="UTF-8">
     <title>POS System</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/dashboard.css">
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
@@ -20,6 +28,7 @@ include "db/DBConnection.php";
     <h3 class="container-left-title">POS Manage</h3>
 
     <ol class="navigation-menu">
+        <li><a href="#" data-page="dashboard">Dashboard</a></li>
         <li><a href="#" data-page="customers">Manage Customers</a></li>
         <li><a href="#" data-page="items">Manage Items</a></li>
         <li><a href="#" data-page="suppliers">Manage Suppliers</a></li>
@@ -43,8 +52,10 @@ include "db/DBConnection.php";
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script src="assets/js/app.js?v=<?= filemtime('assets/js/app.js') ?>"></script>
+<script src="assets/js/dashboard.js?v=<?= filemtime('assets/js/dashboard.js') ?>"></script>
 <script src="assets/js/customer.js?v=<?= filemtime('assets/js/customer.js') ?>"></script>
 <script src="assets/js/item.js?v=<?= filemtime('assets/js/item.js') ?>"></script>
+<script src="assets/js/supplier.js?v=<?= filemtime('assets/js/supplier.js') ?>"></script>
 
 <script>
     // ================= LOGOUT =================
@@ -57,7 +68,15 @@ include "db/DBConnection.php";
             confirmButtonText: "Yes, logout"
         }).then((result) => {
             if (result.isConfirmed) {
-                window.location.href = "index.php";
+                fetch("controller/LoginController.php", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/x-www-form-urlencoded"
+                    },
+                    body: new URLSearchParams({ action: "logout" })
+                }).finally(() => {
+                    window.location.href = "index.php";
+                });
             }
         });
     };

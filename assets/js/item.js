@@ -1,11 +1,11 @@
 // SAVE ITEM
-$(document).on("submit", "#item_save_btn", function(e) {
+$(document).on("submit", "#itemForm", function(e) {
     e.preventDefault();
     $.ajax({
         url: "controller/ItemController.php",
         type: "POST",
         dataType: "json",
-        data: $(this).serialize() + "&action=add",
+        data: $("#itemForm").serialize() + "&action=add",
         success: function(res) {
             if (res.status) {
                 Swal.fire("Success", "Item Saved", "success");

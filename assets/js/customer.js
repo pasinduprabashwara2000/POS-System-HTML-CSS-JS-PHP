@@ -1,11 +1,11 @@
 // SAVE CUSTOMER
-$(document).on("submit", "#customer_save_btn", function(e) {
+$(document).on("submit", "#customerForm", function(e) {
     e.preventDefault();
     $.ajax({
         url: "controller/CustomerController.php",
         type: "POST",
         dataType: "json",
-        data: $(this).serialize() + "&action=add",
+        data: $("#customerForm").serialize() + "&action=add",
         success: function(res) {
             if (res.status) {
                 Swal.fire("Success", "Customer Saved", "success");

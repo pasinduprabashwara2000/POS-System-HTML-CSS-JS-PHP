@@ -1,0 +1,54 @@
+.dashboard-container-top{
+    position: absolute;
+    left: 10px;
+    top: 2px;
+    width: 1020px;
+    height: 100px;
+}
+
+.dashboard-container-bottom{
+    position: absolute;
+    left: 10px;
+    top: 220px;
+    width: 1020px;
+    height: 300px;
+}
+
+#box {
+    position: relative;
+    border-radius: 10px;
+    margin-top: 20px;
+    width: 240px;
+    height: 120px;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    color: #fff;
+}
+
+#box2 {
+    position: absolute;
+    top: 55px;
+    left: 265px;
+    border-radius: 10px;
+    width: 240px;
+    height: 120px;
+    background: linear-gradient(135deg, #0f6e56, #1d9e75);
+    color: #fff;
+}
+
+.box-title {
+    position: relative;
+    top: 25px;
+    margin-left: 45px;
+    font-family: sans-serif;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.box-count {
+    position: absolute;
+    top: 55px;
+    left: 100px;
+    font-family: sans-serif;
+    font-weight: bold;
+    font-size: 28px;
+}

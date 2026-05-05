@@ -1,5 +1,10 @@
 <?php
+session_start();
 
+if (isset($_SESSION['user_id'])) {
+    header("Location: crud.php");
+    exit;
+}
 ?>
 
 <!DOCTYPE html>
@@ -21,15 +26,15 @@
         <label for="password">Password : </label>
         <input type="password" id="password" name="password" class="form-control" placeholder="Enter Your Password">
 
-        <button class="button">Log In</button>
-        <button class="button">Reset</button>
+        <button type="submit" class="button">Log In</button>
+        <button type="reset" class="button">Reset</button>
     </form>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
-    function login(){
+    function login(event){
         event.preventDefault();
 
         const username = document.getElementById("username").value.trim();
@@ -44,24 +49,43 @@
             return;
         }
 
-        const correct_username = "Admin";
-        const correct_password = "Admin@2026";
-
-        if (username === correct_username && password === correct_password){
-            Swal.fire({
-                title: "Login Successfully!",
-                icon: "success",
-                draggable: true
-            }).then(()=> {
-                window.location.href = "crud.php";
+        fetch("controller/LoginController.php", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded"
+            },
+            body: new URLSearchParams({
+                action: "login",
+                username: username,
+                password: password
             })
-        } else {
-            Swal.fire({
-                icon: "error",
-                title: "Error...",
-                text: "Invalid Username or Password",
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status) {
+                    Swal.fire({
+                        title: "Login Successfully!",
+                        icon: "success",
+                        draggable: true
+                    }).then(()=> {
+                        window.location.href = "crud.php";
+                    });
+                    return;
+                }
+
+                Swal.fire({
+                    icon: "error",
+                    title: "Error...",
+                    text: data.message || "Invalid Username or Password",
+                });
+            })
+            .catch(() => {
+                Swal.fire({
+                    icon: "error",
+                    title: "Error...",
+                    text: "Login request failed",
+                });
             });
-        }
     }
 </script>
 
